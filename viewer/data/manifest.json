@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "status": "bootstrap",
+  "notice": "No experimental Astra-generated weights or replays are included yet. The Builder will define the replay manifest contract.",
+  "replays": []
+}

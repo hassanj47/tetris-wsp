@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+
+# Local editor / OS state
+.vscode/
+.idea/
+
+# Temporary outputs
+*.tmp
+*.log.tmp
+
+# Do not ignore weights, replay JSON, evaluation reports, or authoring logs:
+# those are experiment artifacts and should be versioned deliberately.
