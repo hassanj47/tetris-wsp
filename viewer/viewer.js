@@ -155,6 +155,13 @@ function render(detail){
   const stats={Score:settled.score,Level:settled.level,Lines:settled.lines,Tetrises:settled.tetrises,Pieces:settled.pieces};
   const list=$("stats");list.replaceChildren();
   Object.entries(stats).forEach(([k,v])=>{const dt=document.createElement("dt"),dd=document.createElement("dd");dt.textContent=k;dd.textContent=fmt(v);list.append(dt,dd)});
+  const queue=replay.frames.slice(step+1,step+4).map(next=>{
+    const tile=document.createElement("span");
+    tile.textContent=next.piece;
+    tile.style.color=colors[replay.piece_ids[next.piece]];
+    return tile;
+  });
+  $("queue").replaceChildren(...(queue.length?queue:["End"]));
   const ctx=$("piece").getContext("2d");ctx.clearRect(0,0,120,64);
   const top=Math.min(...f.cells.map(c=>c[0])),left=Math.min(...f.cells.map(c=>c[1]));
   f.cells.forEach(([y,x])=>block(ctx,(x-left)*15,2+(y-top)*15,15,colors[replay.piece_ids[f.piece]]));

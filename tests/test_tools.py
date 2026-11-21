@@ -56,3 +56,22 @@ def test_bundled_replays():
                     for edge in edges:
                         assert np.isclose(edge["value"],values[edge["src"]]*edge["weight"])
             else: assert f["neural"] is None
+
+
+def test_fixture_replay_scores_reproduce_from_full_forward_pass(tmp_path):
+    from net.mlp import encode, forward
+    from tetris.engine import Game
+    rng=np.random.default_rng(42)
+    w={k:rng.normal(0,.15,s).astype(np.float32) for k,s in SHAPES.items()}
+    rec=json.loads(Path("viewer/data/fixture-a.json").read_text())
+    game=Game(rec["seed"],rec["config"]["cap"])
+    for frame in rec["frames"]:
+        assert frame["piece"]==game.piece
+        scores,layers=forward(encode(game.moves),w)
+        np.testing.assert_allclose(scores,[c["score"] for c in frame["candidates"]],atol=1e-5)
+        i=frame["selected"]
+        for layer,field in zip(layers,["x","h1","h2"]):
+            np.testing.assert_allclose(layer[i],frame["neural"][field],atol=1e-5)
+        game.step(i)
+        np.testing.assert_array_equal(frame["after"],game.board)
+    assert not game.moves

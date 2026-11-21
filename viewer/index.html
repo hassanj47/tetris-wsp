@@ -4,7 +4,7 @@
 <main><div class="hero"><div><p class="eyebrow">WEIGHT-SPACE PROGRAMMING</p><h1>Placement study<span>.</span></h1></div><div class="source"><label for="source">Recording</label><select id="source"></select></div></div>
 <p id="error" role="alert"></p>
 <section class="panels"><article><div class="panel-heading"><div><p class="eyebrow">SIMULATION</p><h2>Playfield</h2></div><span id="seed" class="chip"></span></div>
-<div class="game"><canvas id="board" width="260" height="520" aria-label="Tetris playfield"></canvas><aside><label>Current piece</label><canvas id="piece" width="120" height="64"></canvas><dl id="stats"></dl></aside></div>
+<div class="game"><canvas id="board" width="260" height="520" aria-label="Tetris playfield"></canvas><aside><label>Current piece</label><canvas id="piece" width="120" height="64"></canvas><dl id="stats"></dl><label for="queue">Replay queue</label><div id="queue" aria-label="Upcoming recorded pieces"></div></aside></div>
 <div class="decision"><i></i><span id="decision"></span></div></article>
 <article class="network"><div class="panel-heading"><div><p class="eyebrow">PLACEMENT SCORER</p><h2>Neural activity</h2></div><span id="kind" class="chip"></span></div>
 <nav aria-label="Inspector view"><button data-tab="signal" class="active">Signal flow</button><button data-tab="features">Features</button><button data-tab="weights">Weights</button><button data-tab="compare">Compare</button></nav>
