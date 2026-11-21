@@ -88,3 +88,9 @@ All values must be finite. The artifact must be deterministic and reproducible f
 Do not execute the game or policy during the initial attempt. Do not train, optimize, search, or use gradient-based methods.
 
 Read `RULES.md` for the complete authoring protocol.
+
+## Implemented conventions and reporting
+
+At rotation 0 the masks, read top to bottom with a slash between rows, are I `1111`, O `11/11`, T `010/111`, S `011/110`, Z `110/011`, J `100/111`, and L `001/111`. Advance the rotation index by turning the mask clockwise and retaining the first instance of each distinct orientation. Coordinates refer to the top-left of the tight bounding box. A piece drops from above and must lock wholly inside the board. Any occupied cell encodes as one, irrespective of piece identity.
+
+Reporting covers lines, survival in pieces, cap frequency, stack height, counts of each clear size, and the fraction of post-clear boards with column 9 empty. Four-line clears are reported per game, as a fraction of all clear events, and as a fraction of all lines cleared. Evaluation follows production of the initial artifact.

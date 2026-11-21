@@ -1,27 +1,15 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d16">
-  <title>Tetris WSP — Builder Preview</title>
-  <style>
-    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at 50% 0%, #17233b, #090d16 58%); color: #edf3ff; }
-    main { width: min(760px, calc(100% - 40px)); padding: 32px; border: 1px solid #293750; border-radius: 20px; background: #101827dd; box-shadow: 0 24px 80px #0008; }
-    .eyebrow { color: #74e0c2; letter-spacing: .16em; font-size: 11px; font-weight: 700; }
-    h1 { margin: 12px 0; font-size: clamp(30px, 6vw, 48px); letter-spacing: -.04em; }
-    p { color: #aebbd0; line-height: 1.65; }
-    .status { display: inline-flex; gap: 8px; align-items: center; margin-top: 12px; padding: 8px 12px; border: 1px solid #315c57; border-radius: 999px; color: #9aefd9; font-size: 12px; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #5be0b5; box-shadow: 0 0 12px #5be0b5; }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="eyebrow">WEIGHT-SPACE PROGRAMMING EXPERIMENT</div>
-    <h1>Tetris WSP</h1>
-    <p>This is the repository bootstrap preview. The Codex Builder will replace this page with the two-panel Tetris gameplay and animated neural-network viewer.</p>
-    <div class="status"><span class="dot"></span> Builder implementation pending</div>
-  </main>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101318"><title>Tetris WSP · Replay studio</title><link rel="stylesheet" href="viewer.css"></head>
+<body><header><div class="brand"><i class="mark" aria-hidden="true">▟</i> Tetris <b>WSP</b></div><span class="divider"></span><span>Replay studio</span><span class="online">● &nbsp; REPLAY ENGINE</span></header>
+<main><div class="hero"><div><p class="eyebrow">WEIGHT-SPACE PROGRAMMING</p><h1>Placement study<span>.</span></h1></div><div class="source"><label for="source">Recording</label><select id="source"></select></div></div>
+<p id="error" role="alert"></p>
+<section class="panels"><article><div class="panel-heading"><div><p class="eyebrow">SIMULATION</p><h2>Playfield</h2></div><span id="seed" class="chip"></span></div>
+<div class="game"><canvas id="board" width="260" height="520" aria-label="Tetris playfield"></canvas><aside><label>Current piece</label><canvas id="piece" width="120" height="64"></canvas><dl id="stats"></dl></aside></div>
+<div class="decision"><i></i><span id="decision"></span></div></article>
+<article class="network"><div class="panel-heading"><div><p class="eyebrow">PLACEMENT SCORER</p><h2>Neural activity</h2></div><span id="kind" class="chip"></span></div>
+<nav aria-label="Inspector view"><button data-tab="signal" class="active">Signal flow</button><button data-tab="features">Features</button><button data-tab="weights">Weights</button><button data-tab="compare">Compare</button></nav>
+<div id="signal"><div class="diagram"><canvas id="net" width="840" height="350" aria-label="Recorded input, hidden activations and weighted contributions"></canvas></div><div class="legend"><span>● Positive contribution</span><span>● Negative</span></div><div class="readouts"><div><label>Selected score</label><strong id="value"></strong></div><div><label>Legal placements</label><strong id="count"></strong></div><div><label>Active hidden units</label><strong id="active"></strong></div></div></div>
+<div id="features" hidden></div><div id="weights" hidden></div><div id="compare" hidden><label for="other">Aligned recording</label> <select id="other"></select><p id="compareNote"></p><canvas id="second" width="180" height="360" aria-label="Comparison board"></canvas><p id="comparison"></p></div>
+<footer id="provenance"></footer></article></section>
+<section class="transport" aria-label="Playback"><button id="play">▶ Play</button><button id="prev" aria-label="Previous placement">‹</button><button id="next" aria-label="Next placement">›</button><span id="position"></span><input id="timeline" type="range" min="0" value="0" aria-label="Placement"><select aria-label="Playback speed" id="speed"><option value=".5">0.5×</option><option selected value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select><button id="load">Open replay</button><input hidden id="file" type="file" accept=".json" multiple></section>
+</main><script src="viewer.js"></script></body></html>

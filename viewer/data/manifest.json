@@ -1,6 +1,1 @@
-{
-  "schema_version": 1,
-  "status": "bootstrap",
-  "notice": "No experimental Astra-generated weights or replays are included yet. The Builder will define the replay manifest contract.",
-  "replays": []
-}
+{"schema_version":1,"replays":[{"name":"Synthetic fixture A","path":"data/fixture-a.json","seed":17,"cap":45,"rules":"vertical-drop-v1"},{"name":"Synthetic fixture B","path":"data/fixture-b.json","seed":17,"cap":45,"rules":"vertical-drop-v1"},{"name":"Heuristic baseline","path":"data/heuristic.json","seed":17,"cap":45,"rules":"vertical-drop-v1"}],"diffs":[{"before":"cca311575ebc59cb1491302fded02f829dc7715e44480fd031e80da014484797","after":"1c94c02fe856b5b04321f6df2882647d71f00384eb966ea64ddc4c6b8e062524","changed":32,"total":30529,"percent":0.10481836941924072,"tensors":{"W1":{"changed":0,"percent":0.0,"max_abs":0.0,"l1":0.0},"b1":{"changed":0,"percent":0.0,"max_abs":0.0,"l1":0.0},"W2":{"changed":0,"percent":0.0,"max_abs":0.0,"l1":0.0},"b2":{"changed":0,"percent":0.0,"max_abs":0.0,"l1":0.0},"W3":{"changed":32,"percent":100.0,"max_abs":0.6938008666038513,"l1":8.263597229495645},"b3":{"changed":0,"percent":0.0,"max_abs":0.0,"l1":0.0}},"largest_neurons":[{"layer":3,"unit":0,"l1":8.263597229495645}]}]}
