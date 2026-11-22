@@ -1,0 +1,46 @@
+name: Restore Tetris WSP bootstrap
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tetris-wsp-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Extract original Tetris scaffold
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -f tetris-wsp-bootstrap.zip ]]; then
+            echo "Bootstrap archive is absent; no extraction needed."
+            exit 0
+          fi
+
+          unzip -q tetris-wsp-bootstrap.zip -d .
+          rm tetris-wsp-bootstrap.zip
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No extracted changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: initialize original Tetris WSP scaffold"
+          git push
