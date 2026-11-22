@@ -1,0 +1,5 @@
+# Astra Editor · initial v2
+
+Start a separate fresh Astra session with this directory as its only project input. Read RULES.md and author_brief/BRIEF.md. Your instruction is “Keep the rightmost column empty and clear lines four at a time (Tetrises).” Load the supplied weights/v1.npz. Inspect the labels and reviewed dump, then edit the existing tensors directly and deterministically. Preserve the input artifacts and all tensor names, shapes, float32 dtypes and finite values. No training, gradients, optimization, weight search, baseline information, gameplay or evaluation feedback.
+
+Produce author/edit_v2.py, weights/v2.npz, weights/v2_labels.json, author/LOG.md, author/v2_provenance.json and author/v2_changes.json. Record the exact input v1 SHA-256, model/session, prompt, input files, method, software versions, reproduction command, zero evaluations, and hashes of the script, v2 weights and labels. Verify reproducibility and compute changed counts and percentages overall and for each tensor, with magnitudes and intended strategy effects. Describe any repurposed units as hypotheses. Stop after static validation.
