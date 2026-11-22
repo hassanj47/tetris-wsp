@@ -88,3 +88,21 @@ All values must be finite. The artifact must be deterministic and reproducible f
 Do not execute the game or policy during the initial attempt. Do not train, optimize, search, or use gradient-based methods.
 
 Read `RULES.md` for the complete authoring protocol.
+
+## Implemented orientation and placement convention
+
+Spawn masks below use dots for empty cells and slashes between rows. Rotation 0 is the listed mask. Subsequent indices rotate clockwise in screen coordinates, normalize the minimum x and y to zero, and omit duplicates. x is the leftmost occupied column of that normalized mask. A candidate must fit fully on the board at row zero and descend vertically from above the stack.
+
+| Piece | Spawn mask |
+|---|---|
+| I | IIII |
+| O | OO/OO |
+| T | .T./TTT |
+| S | .SS/SS. |
+| Z | ZZ./.ZZ |
+| J | J../JJJ |
+| L | ..L/LLL |
+
+## Evaluation measures
+
+Final reporting includes lines, pieces survived, clear counts by size, cap frequency, mean and maximum stack height, and the fraction of committed boards with column 9 empty. Stack height is the distance from the floor to the highest occupied cell. Tetrises per game, share of clear events that are Tetrises, and share of lines cleared by Tetrises have distinct denominators. Candidate scoring receives only the specified 205 inputs.
