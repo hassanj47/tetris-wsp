@@ -1,0 +1,106 @@
+{
+  "definition": "Exact v2 minus v1. Percentages use all parameters in scope. Histograms count only nonzero absolute deltas.",
+  "overall": {
+    "parameters": 30529,
+    "changed": 27,
+    "percent_changed": 0.08844049919748435,
+    "absolute_delta_histogram": [
+      {
+        "magnitude": 0.5,
+        "count": 1
+      },
+      {
+        "magnitude": 1.0,
+        "count": 22
+      },
+      {
+        "magnitude": 2.0,
+        "count": 1
+      },
+      {
+        "magnitude": 8.0,
+        "count": 2
+      },
+      {
+        "magnitude": 17.0,
+        "count": 1
+      }
+    ]
+  },
+  "by_tensor": {
+    "W1": {
+      "parameters": 26240,
+      "changed": 21,
+      "percent_changed": 0.08003048780487805,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 1.0,
+          "count": 20
+        },
+        {
+          "magnitude": 17.0,
+          "count": 1
+        }
+      ]
+    },
+    "b1": {
+      "parameters": 128,
+      "changed": 1,
+      "percent_changed": 0.78125,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 1.0,
+          "count": 1
+        }
+      ]
+    },
+    "W2": {
+      "parameters": 4096,
+      "changed": 1,
+      "percent_changed": 0.0244140625,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 2.0,
+          "count": 1
+        }
+      ]
+    },
+    "b2": {
+      "parameters": 32,
+      "changed": 1,
+      "percent_changed": 3.125,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 1.0,
+          "count": 1
+        }
+      ]
+    },
+    "W3": {
+      "parameters": 32,
+      "changed": 2,
+      "percent_changed": 6.25,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 0.5,
+          "count": 1
+        },
+        {
+          "magnitude": 8.0,
+          "count": 1
+        }
+      ]
+    },
+    "b3": {
+      "parameters": 1,
+      "changed": 1,
+      "percent_changed": 100.0,
+      "absolute_delta_histogram": [
+        {
+          "magnitude": 8.0,
+          "count": 1
+        }
+      ]
+    }
+  }
+}
