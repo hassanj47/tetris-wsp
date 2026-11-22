@@ -34,5 +34,11 @@
     "weights/v1.npz": "d32aee66abee6fae581d28ecb79351fdbd6de611d3c97693161ef291e95a0114",
     "weights/v1_labels.json": "eff4307bef7e69bd389427da299c0f17554dac9b6bb94f40177e67f8bb819f54",
     "author/LOG.md": "298b84b856bfcccfc3867ebc4fa3fe633a4167f4dc2aac5b0ca33051de7374a4"
+  },
+  "operator_attestation": {
+    "model_selected": "GPT-6.2 Astra Medium",
+    "source": "operator confirmation",
+    "exact_session_id": "unavailable",
+    "verification_status": "Operator-reported information. Independent verification against platform metadata is unavailable."
   }
 }
