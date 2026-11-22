@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101510"><title>Placement Lab · Tetris WSP</title><link rel="stylesheet" href="viewer.css"></head>
+<body><header><div class="brand"><span class="mark" aria-hidden="true">▦</span> Tetris <b>WSP</b></div><span class="header-line"></span><span class="subbrand">Weight-space programming</span><span class="local">● &nbsp; Replay studio</span></header>
+<main><div class="intro"><div><h1>Placement Lab<span>.</span></h1><p>One piece. Every legal placement scored.</p></div><div class="selectors"><label>Recording<select id="recording"></select></label><label>Compare with<select id="compare"><option value="">Off</option></select></label></div></div>
+<p id="status" role="status">Loading recording…</p>
+<div class="panels"><section class="panel"><div class="panel-head"><h2>Playfield</h2><span class="tag" id="seed"></span></div><div id="games"></div></section>
+<section class="panel neural"><div class="panel-head"><h2>Decision network</h2><span class="tag" id="kind"></span></div>
+<div class="tabs" role="group" aria-label="Inspect decision"><button data-mode="network" aria-pressed="true">Network</button><button data-mode="features" aria-pressed="false">Features</button><button data-mode="weights" aria-pressed="false">Weights</button></div>
+<div class="net-head"><div><small>SELECTED PLACEMENT</small><strong id="placement"></strong></div><div class="right"><small>OUTPUT SCORE</small><strong id="score"></strong></div></div>
+<div id="network"><canvas id="graph" width="760" height="340" aria-label="Recorded input groups, hidden neurons and weighted edges"></canvas><div class="legend"><span><i></i> Positive contribution</span><span><i></i> Negative</span></div></div>
+<div id="detail" hidden></div><div class="readout" id="readout"></div></section></div>
+<section class="transport" aria-label="Replay controls"><button id="play" aria-label="Play">▶</button><button id="prev" aria-label="Previous placement">‹</button><button id="next" aria-label="Next placement">›</button><label class="timeline">Placement <output id="counter"></output><input type="range" id="seek" min="0" value="0" aria-label="Placement"></label><select id="speed" aria-label="Playback speed"><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></section>
+<footer><span>205 → 128 → 32 → 1</span><span>30,529 parameters</span></footer></main><script type="module" src="viewer.js"></script></body></html>
