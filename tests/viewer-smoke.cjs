@@ -7,8 +7,8 @@ const assert=require('node:assert/strict');
  await page.goto(process.argv[2] || 'http://127.0.0.1:8000');
  await page.waitForSelector('.board');
 
- assert.match(await page.locator('#status').innerText(),/synthetic weights/);
- await page.selectOption('#compare','fixture-b.json');await page.waitForSelector('.paired .board');
+ assert.match(await page.locator('#status').innerText(),/Recorded neural inference/);
+ await page.selectOption('#compare','astra-v2-seed-73.json');await page.waitForSelector('.paired .board');
  assert.equal(await page.locator('.board').count(),2);
  assert.match(await page.locator('#status').innerText(),/% of weights changed/);
  await page.click('[data-mode="features"]');assert.match(await page.locator('#detail').innerText(),/Candidates by score/);
@@ -30,7 +30,7 @@ const assert=require('node:assert/strict');
    await page.waitForSelector('.paired .board');
    await files.setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{}')});
    await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Import failed'));
-   assert.equal(await page.locator('#recording option').count(),4);
+   assert.equal(await page.locator('#recording option').count(),6);
    await page.click('#next');
    assert.match(await page.locator('#counter').innerText(),/^2 /);
  }

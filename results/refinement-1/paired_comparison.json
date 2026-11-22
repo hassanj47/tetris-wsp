@@ -1,0 +1,133 @@
+{
+  "cohort": "refinement",
+  "seeds": [
+    10000,
+    10001,
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007,
+    10008,
+    10009,
+    10010,
+    10011,
+    10012,
+    10013,
+    10014,
+    10015,
+    10016,
+    10017,
+    10018,
+    10019
+  ],
+  "config": {
+    "rules": "vertical-drop-1",
+    "board": [
+      20,
+      10
+    ],
+    "bag": "numpy-PCG64-seven-bag",
+    "cap": 1000
+  },
+  "base": "aad0c2bb946579e0e8bd5ec351cddc5482c3aeb6",
+  "policies": {
+    "Astra v1": {
+      "source_branch": "wsp/author-v1",
+      "source_commit": "073ac33743c13891d66d0788801116e4289e0226",
+      "artifact": "weights/v1.npz",
+      "sha256": "d32aee66abee6fae581d28ecb79351fdbd6de611d3c97693161ef291e95a0114",
+      "aggregate": {
+        "mean_lines": 389.2,
+        "median_lines": 397.0,
+        "min_lines": 233,
+        "max_lines": 399,
+        "mean_pieces": 981.25,
+        "tetrises_per_game": 3.15,
+        "clear_events": {
+          "singles": 5274,
+          "doubles": 838,
+          "triples": 194,
+          "tetrises": 63
+        },
+        "tetris_event_share": 0.009891662741403674,
+        "tetris_line_share": 0.03237410071942446,
+        "mean_game_mean_stack_height": 4.68964,
+        "max_observed_stack_height": 20,
+        "cap_reached_percent": 95.0,
+        "mean_game_column_9_empty_fraction": 0.26621
+      }
+    },
+    "Astra v2": {
+      "source_branch": "wsp/editor-v2",
+      "source_commit": "9cc290e1b64a828f175f23689e6bbb438a5864dc",
+      "artifact": "weights/v2.npz",
+      "sha256": "c11aa7cb3373cc8934e60637677e71dafccb060926881bbd66285eba244fd5a8",
+      "aggregate": {
+        "mean_lines": 317.95,
+        "median_lines": 392.0,
+        "min_lines": 41,
+        "max_lines": 399,
+        "mean_pieces": 818.3,
+        "tetrises_per_game": 15.5,
+        "clear_events": {
+          "singles": 2556,
+          "doubles": 668,
+          "triples": 409,
+          "tetrises": 310
+        },
+        "tetris_event_share": 0.07862033984275932,
+        "tetris_line_share": 0.19499921371284792,
+        "mean_game_mean_stack_height": 7.715027926858033,
+        "max_observed_stack_height": 20,
+        "cap_reached_percent": 65.0,
+        "mean_game_column_9_empty_fraction": 0.44322406315572976
+      }
+    }
+  },
+  "paired_v2_minus_v1": {
+    "lines": {
+      "mean": -71.25,
+      "median": -6.0,
+      "wins": 3,
+      "ties": 0,
+      "losses": 17
+    },
+    "pieces": {
+      "mean": -162.95,
+      "median": 0.0,
+      "wins": 0,
+      "ties": 13,
+      "losses": 7
+    },
+    "tetrises": {
+      "mean": 12.35,
+      "median": 13.0
+    },
+    "tetris_event_share": {
+      "mean": 0.09260494130318357,
+      "median": 0.0771198883181669
+    },
+    "tetris_line_share": {
+      "mean": 0.19209800921394338,
+      "median": 0.17726453839808998
+    },
+    "column_9_empty_fraction": {
+      "mean": 0.17701406315572976,
+      "median": 0.17300000000000001
+    },
+    "mean_stack_height": {
+      "mean": 3.0253879268580333,
+      "median": 2.708433333333333
+    },
+    "max_stack_height": {
+      "mean": 4.35,
+      "median": 4.5
+    },
+    "cap_reached_percent": {
+      "mean": -30,
+      "median": 0.0
+    }
+  }
+}
