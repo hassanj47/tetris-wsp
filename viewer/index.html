@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101510"><title>Placement Lab · Tetris WSP</title><link rel="stylesheet" href="viewer.css"></head>
 <body><header><div class="brand"><span class="mark" aria-hidden="true">▦</span> Tetris <b>WSP</b></div><span class="header-line"></span><span class="subbrand">Weight-space programming</span><span class="local">● &nbsp; Replay studio</span></header>
-<main><div class="intro"><div><h1>Placement Lab<span>.</span></h1><p>One piece. Every legal placement scored.</p></div><div class="selectors"><label>Recording<select id="recording"></select></label><label>Compare with<select id="compare"><option value="">Off</option></select></label></div></div>
+<main><div class="intro"><div><h1>Placement Lab<span>.</span></h1><p>One piece. Every legal placement scored.</p></div><div class="selectors"><button id="import" type="button">Import replay</button><input type="file" id="file" accept=".json,application/json" hidden><label>Recording<select id="recording"></select></label><label>Compare with<select id="compare"><option value="">Off</option></select></label></div></div>
 <p id="status" role="status">Loading recording…</p>
 <div class="panels"><section class="panel"><div class="panel-head"><h2>Playfield</h2><span class="tag" id="seed"></span></div><div id="games"></div></section>
 <section class="panel neural"><div class="panel-head"><h2>Decision network</h2><span class="tag" id="kind"></span></div>

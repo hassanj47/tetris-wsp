@@ -2,6 +2,7 @@ import argparse
 import json
 from pathlib import Path
 import numpy as np
+from .cohorts import COHORTS
 from net.spec import load, digest
 from policies.heuristic_policy import heuristic
 from policies.random_policy import random_policy
@@ -18,6 +19,7 @@ def arguments(description):
     parser.add_argument("--weights", type=Path)
     parser.add_argument("--version", help="Displayed artifact name for a neural policy")
     parser.add_argument("--cap", type=int, default=1000)
+    parser.add_argument("--cohort", choices=COHORTS, default="development")
     parser.add_argument("--out", required=True, type=Path)
     return parser
 
@@ -30,6 +32,8 @@ def policy(args, seed, recording):
         weights = load(args.weights)
         info.update(sha256=digest(args.weights), artifact=args.weights.name)
         return neural(weights, recording), info
+    if args.policy == "random":
+        info.update(implementation="builder-2", rng="PCG64-SeedSequence-child-1")
     if args.weights:
         raise ValueError("--weights requires a neural policy")
     return (heuristic if args.policy == "heuristic" else random_policy(seed)), info

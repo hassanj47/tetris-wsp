@@ -59,8 +59,14 @@ python -m tools.diff_weights weights/v1.npz weights/v2.npz --out results/v1-v2-d
 
 The AST checker flags common prohibited imports and calls. Manual review of source and provenance remains necessary. The diff ranks neurons by summed absolute changes in incoming weights plus bias. [PLAN.md](PLAN.md), [RULES.md](RULES.md) and [the Author brief](author_brief/BRIEF.md) specify the protocol.
 
-## Deployment and bootstrap history
+## Builder freeze
 
-The original ZIP remains in history and in the checkout. All 22 scaffold members were verified byte for byte before implementation. The intended Pages workflow is the original `.github/workflows/pages.yml` in that ZIP. It uploads only `viewer/` and requests `contents: read`, `pages: write` and `id-token: write`.
+The static preview is served from the separate gh-pages branch. This branch contains the application source. Use **Import replay** to open a local schema 1 recording; it is validated in the browser and becomes available in both recording selectors for the current session.
 
-Before merging to main, an authorized maintainer must delete `.github/workflows/restore-tetris-bootstrap.yml` and restore the archive's `.github/workflows/pages.yml`. The temporary restore job triggers on main and attempts to extract the old scaffold. Updating workflow files through the GitHub App requires repository **Workflows: write** permission in addition to **Contents: write**. Enable **Settings → Pages → Source → GitHub Actions** on an eligible repository, then merge the reviewed changes and verify the deployment URL from the Pages job. Public deployment is pending.
+The evaluation and recording commands enforce inclusive seed ranges: development 0–9,999, refinement 10,000–10,059 and held-out 20,000–20,099. Use the entire held-out set for final comparisons. Piece order uses the original PCG64 stream; random policy decisions use child stream 1 from the same seed. New random replays identify the generator in their policy metadata.
+
+Aggregate mean_game_mean_stack_height averages each game's mean post-placement peak height with equal weight per game. max_observed_stack_height is the tallest stack across all games. cap_reached_percent uses games as its denominator. mean_game_column_9_empty_fraction gives each game equal weight.
+
+Prepared Author and Editor workspaces each include their own ASSIGNMENT.md. Start a fresh Astra session with access only to that directory and ask it to complete the assignment. Transfer the verified v1 artifact and labels into the Builder weights directory before creating the human-readable dump and preparing the Editor workspace.
+
+Run Python tests with `python -m pytest -q`. Run replay validation tests with `node --test tests/replay.test.mjs`. With the local viewer served on port 8000, the provisioned Chromium and Playwright can run `node tests/viewer-smoke.cjs http://localhost:8000` for playback, comparison and real file import.

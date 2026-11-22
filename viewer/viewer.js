@@ -1,3 +1,5 @@
+import {validateReplay} from "./replay.mjs";
+
 const $ = id => document.getElementById(id);
 const colors = ['#101619','#69dacf','#e4c37c','#b99ae8','#9cce8c','#e39199','#88ace5','#eca778'];
 const ids = ' IOTSZJL';
@@ -15,8 +17,7 @@ async function json(path) {
 async function recording(path) {
   if(!cache.has(path)){
     const r=await json('data/'+path);
-    if(r.schema_version!==1 || !r.frames?.length) throw Error('Unsupported or empty recording');
-    cache.set(path,r);
+    cache.set(path,validateReplay(r));
   }
   return cache.get(path);
 }
@@ -174,6 +175,21 @@ $('seek').oninput=e=>seek(+e.target.value);$('speed').onchange=e=>{state.speed=+
 document.querySelectorAll('[data-mode]').forEach(btn=>btn.onclick=()=>{
   state.mode=btn.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b===btn));render();
 });
+let importCount=0;
+$('import').onclick=()=>$('file').click();
+$('file').onchange=async event=>{
+  const file=event.target.files[0];
+  event.target.value='';
+  if(!file)return;
+  try{
+    const replay=validateReplay(JSON.parse(await file.text()));
+    const key='local:'+ ++importCount;
+    cache.set(key,replay);
+    for(const id of ['recording','compare']) $(id).add(new Option(file.name,key));
+    $('recording').value=key;
+    await load();
+  }catch(err){$('status').textContent='Import failed · '+err.message;}
+};
 $('recording').onchange=load;$('compare').onchange=load;
 try{
   manifest=await json('data/manifest.json');

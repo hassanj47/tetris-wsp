@@ -1,4 +1,5 @@
 from statistics import mean, median
+from .cohorts import validate_seeds
 from .simulation import arguments, simulate, write_json
 
 
@@ -10,17 +11,20 @@ def aggregate(games):
                 tetrises_per_game=counts["tetrises"]/len(games), clear_events=counts,
                 tetris_event_share=counts["tetrises"]/max(1,sum(counts.values())),
                 tetris_line_share=4*counts["tetrises"]/max(1,sum(lines)),
-                cap_percent=100*mean(g["capped"] for g in games),
-                column_9_empty_fraction=mean(g["column_9_empty_fraction"] for g in games))
+                mean_game_mean_stack_height=mean(g["mean_stack_height"] for g in games),
+                max_observed_stack_height=max(g["max_stack_height"] for g in games),
+                cap_reached_percent=100*mean(g["capped"] for g in games),
+                mean_game_column_9_empty_fraction=mean(g["column_9_empty_fraction"] for g in games))
 
 
 def main():
     parser = arguments("Evaluate a policy on explicitly supplied seeds")
     parser.add_argument("--seeds", nargs="+", type=int, required=True)
-    parser.add_argument("--cohort", choices=["development","refinement","held-out"], default="development")
     args = parser.parse_args()
-    if len(set(args.seeds)) != len(args.seeds):
-        parser.error("supply distinct seeds")
+    try:
+        validate_seeds(args.cohort, args.seeds)
+    except ValueError as exc:
+        parser.error(str(exc))
     runs = [simulate(args, seed) for seed in args.seeds]
     games = [r["game"] for r in runs]
     stats = aggregate(games)

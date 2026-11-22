@@ -4,20 +4,40 @@ import ast
 from pathlib import Path
 
 BLOCKED = {"torch","keras","tensorflow","jax","optax","scipy.optimize","sklearn","gym",
-           "stable_baselines3","deap","tetris","policies","tools.eval","tools.record","tools.simulation"}
-CALLS = {"backward","fit","minimize","optimize","backprop","gradient","grad","train"}
+           "stable_baselines3","deap","tetris","policies","tools"}
+CALLS = {"backward","fit","minimize","optimize","backprop","gradient","grad","train","apply_gradients",
+         "differential_evolution","backpropagate","fit_transform"}
 
 
 def findings(source):
     issues = []
-    for node in ast.walk(ast.parse(source)):
+    tree = ast.parse(source)
+    aliases = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom):
+            for a in node.names:
+                aliases[a.asname or a.name] = f"{node.module}.{a.name}"
+        elif isinstance(node, ast.Import):
+            aliases.update({a.asname: a.name for a in node.names if a.asname})
+    for node in ast.walk(tree):
         names = []
         if isinstance(node, ast.Import):
             names = [a.name for a in node.names]
         elif isinstance(node, ast.ImportFrom):
             names = [f"{node.module}.{a.name}" for a in node.names]
         elif isinstance(node, ast.Call):
-            name = ast.unparse(node.func).split(".")[-1]
+            parts = ast.unparse(node.func).split(".")
+            parts[0] = aliases.get(parts[0], parts[0])
+            target = ".".join(parts)
+            name = target.split(".")[-1]
+            names.append(target)
+            if name in {"__import__", "import_module"}:
+                if node.args and isinstance(node.args[0], ast.Constant) and isinstance(node.args[0].value, str):
+                    names.append(node.args[0].value)
+                else:
+                    issues.append(f"{node.lineno}: review dynamic import")
+            if name in {"eval", "exec"}:
+                issues.append(f"{node.lineno}: review dynamic execution")
             if name in CALLS:
                 issues.append(f"{node.lineno}: review call to {name}")
         for name in names:

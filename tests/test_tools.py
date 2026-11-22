@@ -27,12 +27,12 @@ def test_replay_metrics_and_order():
         assert rows == f["cleared"] and score == max(c[3] for c in f["candidates"])
         after = np.vstack((np.zeros((len(rows),10)), np.delete(locked,rows,axis=0)))
         assert np.array_equal(after!=0,np.array(f["after"])!=0)
-    assert aggregate([r["game"]])["cap_percent"] == 100
+    assert aggregate([r["game"]])["cap_reached_percent"] == 100
 
 
 def test_aggregate_denominators():
     game = dict(lines=6,singles=2,doubles=0,triples=0,tetrises=1,pieces=23,capped=False,
-                column_9_empty_fraction=.5)
+                column_9_empty_fraction=.5, mean_stack_height=6, max_stack_height=9)
     stats = aggregate([game])
     assert stats["tetris_event_share"] == 1/3 and stats["tetris_line_share"] == 4/6
 
@@ -50,7 +50,7 @@ def test_diff_and_rule_guard():
 def test_isolation(tmp_path):
     dest = tmp_path/"author"
     prepare("author",dest)
-    assert {str(f.relative_to(dest)) for f in dest.rglob("*") if f.is_file()} == {"RULES.md","author_brief/BRIEF.md"}
+    assert {str(f.relative_to(dest)) for f in dest.rglob("*") if f.is_file()} == {"ASSIGNMENT.md","RULES.md","author_brief/BRIEF.md"}
     with pytest.raises(FileExistsError): prepare("author",dest)
 
 
