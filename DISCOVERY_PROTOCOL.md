@@ -1,0 +1,9 @@
+# Feedback-Guided WSP Protocol
+Question: can GPT-6.2 Astra construct a functioning neural Tetris placement controller directly in weight space, then improve/change its strategy by reasoning over limited real game outcomes and directly editing weights?
+Start from six all-zero tensors. No prior weights, labels, logs, baselines, heuristic coefficients, expert examples or prior replays are supplied.
+Objective: maximize mean official game score over 20-game practice batches (1,000-piece cap). No strategy such as well maintenance or Tetrises is prescribed.
+Exactly three rounds, 20 games each: R1 seeds 9000-9019; R2 9020-9039; R3 9040-9059. Each round runs once on current weights. Harness returns aggregate metrics, per-game summaries, and three deterministic diagnostic replays: shortest survival, median score, highest score. These are selected from the same 20 games, not extra samples. Astra may inspect them, form hypotheses and make at most one direct weight revision before next round.
+Allowed: deterministic NumPy construction/editing; reason about rules, boards, candidate scores, activations and observed outcomes; inspect only prescribed reports/replays.
+Prohibited: gradients, backprop, optimizers, fitting/regression, RL, evolutionary methods, random/automated weight search, parameter sweeps, tree search, minimax, lookahead, rollouts, runtime symbolic heuristics, external gameplay, prior artifacts/baselines, changing engine/network/harness/seeds/metrics, held-out results, seed-specific hacks.
+Every revision loads exact previous archive and directly edits tensors. Preserve shapes/dtypes/finiteness. Record append-only observations, hypotheses, edits, hashes and provenance. This is feedback-guided WSP, not zero-shot or conventional model training.
+Final artifact is frozen; separate evaluator will compare v1/v2/v3 on disjoint held-out seeds. Discovery agent must not run or see that evaluation.

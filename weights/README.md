@@ -1,0 +1,1 @@
+No prior weights supplied. Astra creates v3_initial.npz from all-zero tensors; each revision directly edits the previous artifact.
