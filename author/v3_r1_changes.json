@@ -1,0 +1,50 @@
+{
+  "parent_sha256": "bfe47746692c6f602da68e580dd4b92bdb62b4ea833a008b8552ae51f6e2feaf",
+  "output_sha256": "8dd72dbfc9be03948582fa76f79c01a31c8898f63125fbe43db3730cea0e70ef",
+  "changed": 1868,
+  "percent": 6.118772314848177,
+  "tensors": {
+    "W1": {
+      "changed": 1260,
+      "size": 26240,
+      "min_delta": -3.0,
+      "max_delta": 1.0,
+      "sum_abs_delta": 2280.0
+    },
+    "b1": {
+      "changed": 100,
+      "size": 128,
+      "min_delta": 0.0,
+      "max_delta": 2.0,
+      "sum_abs_delta": 200.0
+    },
+    "W2": {
+      "changed": 506,
+      "size": 4096,
+      "min_delta": -2.0,
+      "max_delta": 1.0,
+      "sum_abs_delta": 606.0
+    },
+    "b2": {
+      "changed": 1,
+      "size": 32,
+      "min_delta": 0.0,
+      "max_delta": 200.0,
+      "sum_abs_delta": 200.0
+    },
+    "W3": {
+      "changed": 1,
+      "size": 32,
+      "min_delta": 0.0,
+      "max_delta": 4.0,
+      "sum_abs_delta": 4.0
+    },
+    "b3": {
+      "changed": 0,
+      "size": 1,
+      "min_delta": 0.0,
+      "max_delta": 0.0,
+      "sum_abs_delta": 0.0
+    }
+  }
+}

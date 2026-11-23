@@ -1,0 +1,17 @@
+{
+  "h1": {
+    "0-99": "sky cells in row pair i//10, column i%10, before first occupied cell",
+    "100-109": "column occupancy counts",
+    "110": "altitude cost",
+    "111": "clear payout",
+    "112-127": "unused"
+  },
+  "h2": {
+    "0": "exact buried empty cell count",
+    "1-18": "two directed height differences per adjacent column pair",
+    "19": "altitude cost",
+    "20": "clear payout",
+    "21-31": "unused"
+  },
+  "output": "higher placement preference"
+}
