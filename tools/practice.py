@@ -83,7 +83,7 @@ def round_run(n,path,version,out):
  "note":"Three diagnostic replays are selected from this same 20-game batch; not additional samples."}
  write(out/"feedback.json",report)
  rows="\n".join(f"| {k} | {v} |" for k,v in stats.items())
- (out/"REPORT.md").write_text(f"# Astra v3 practice round {n}\n\n20 games, seeds {min(SEEDS[n])}-{max(SEEDS[n])}, cap 1000.\n\nWeight SHA-256: {digest(path)}\n\n| Metric | Result |\n|---|---:|\n{rows}\n\n## Diagnostic replays\n"+"\n".join(f"- {a}: seed {b['seed']} — {c}" for (a,b),c in zip(unique,[x[1] for x in unique],[x['path'] for x in diagnostics]))+"\n",encoding="utf-8")
+ (out/"REPORT.md").write_text(f"# Astra v3 practice round {n}\n\n20 games, seeds {min(SEEDS[n])}-{max(SEEDS[n])}, cap 1000.\n\nWeight SHA-256: {digest(path)}\n\n| Metric | Result |\n|---|---:|\n{rows}\n\n## Diagnostic replays\n"+"\n".join(f"- {role}: seed {game['seed']} — {item['path']}" for (role,game),item in zip(unique,diagnostics))+"\n",encoding="utf-8")
  return report
 
 def showcase(path,version,out):
