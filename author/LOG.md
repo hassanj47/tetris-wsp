@@ -33,3 +33,7 @@ Round 3 ran once with revision 2. Mean score 241905, median 125250, 438.2 pieces
 Final hypothesis: keeping a shallow edge can retain scoring opportunities if larger edge drops become expensive. Reduce the right-column cell cost from twelve to one, restore half the normal slope charge, and add a second-layer ReLU charging two per unit of depth beyond three. This permits shallow right-edge variation without leaving a deep shaft free. Restore the initial single/double clear values and temper the four-line reward to 24. See edit_v3_final.py. Freeze this one edit, with no practice budget left to test it. The showcase cannot establish its mean score.
 
 final: validated and rebuilt byte-for-byte. Archive and rebuild SHA-256 62fa8adae4efeecb1d28e7f12bdbbcc14de18b5d4610da0bb28403d6673ca2fb. See v3_final_provenance.json for inputs and tensor counts.
+
+## Freeze, rebuild and showcase
+
+Final weights were committed at f78adf6 before generating the preassigned showcase. Rebuilt the full four-stage chain in an empty temporary directory; all four archives matched byte for byte. Generated seed 73 once: 361700 points, 658 pieces, 246 lines, no Tetrises. The supplied replay validator accepted every diagnostic and the showcase. The final strategy has no practice-batch estimate. SHA256SUMS records delivery hashes; author/validate_v3.py reproduces static checks without games.
