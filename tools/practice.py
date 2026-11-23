@@ -69,7 +69,7 @@ def round_run(n,path,version,out):
  unique=[]; seen=set()
  for role,g in picks:
   if g["seed"] not in seen: unique.append((role,g)); seen.add(g["seed"])
- for role,g in ordered:
+ for g in ordered:
   if len(unique)==3: break
   if g["seed"] not in seen: unique.append(("additional-diagnostic",g)); seen.add(g["seed"])
  rd=out/"replays"; rd.mkdir()
