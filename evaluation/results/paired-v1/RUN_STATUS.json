@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "cohort_id": "paired-seed-cohort-2026-11-24",
+  "expected_games": 300,
+  "policy_ids": [
+    "astra_v1",
+    "astra_v2",
+    "v3_initial",
+    "v3_r1",
+    "v3_r2",
+    "v3_final"
+  ],
+  "source_commit": "bac1e880ebda16726dd9a3bcc0873be00a1d8afc",
+  "source_blobs": {
+    "tetris/engine.py": "e517ee90b95e03657ee406b43baeb373dbdecfdd",
+    "tetris/moves.py": "e9579bc21d73e079a9ed1c16f1258c0ad027327a",
+    "tetris/rng.py": "f112d4f2bc3d3955ca0b132b112575d232b6bfe9",
+    "tetris/pieces.py": "3708b4425c18c53abc4544987c508454b4ce036c",
+    "net/mlp.py": "48a62bb3d3abe802e3045fcdef4a9e254fffbab7",
+    "net/spec.py": "a6185fc29bda196748009af1f7183c5449a326db",
+    "tools/practice.py": "2b8929a4da54698b4d40b632bb55354d68c4e282"
+  },
+  "note": "If interrupted, do not rerun this cohort automatically; inspect the status and report.",
+  "completed_games": 300,
+  "result_file": "paired-evaluation.json"
+}
