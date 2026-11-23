@@ -1,0 +1,17 @@
+{
+  "h1": {
+    "0-99": "occupied at row 9+i//10, col i%10 and empty directly below",
+    "100-109": "column occupancy counts",
+    "110": "altitude cost",
+    "111": "clear payout",
+    "112-127": "unused"
+  },
+  "h2": {
+    "0": "roof count",
+    "1-18": "two directed load differences per adjacent column pair",
+    "19": "altitude cost",
+    "20": "clear payout",
+    "21-31": "unused"
+  },
+  "output": "higher placement preference"
+}

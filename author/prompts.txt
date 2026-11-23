@@ -1,0 +1,43 @@
+We are beginning Astra v3: Feedback-Guided Weight-Space Strategy Discovery.
+
+
+
+Read AGENTS.md, ASSIGNMENT.md, DISCOVERY_PROTOCOL.md, GAME_SPEC.md and RULES.md.
+
+
+
+Follow the assignment from beginning to end.
+
+
+
+Important requirements:
+
+1. Start with all 30,529 network parameters initialized to zero.
+2. Independently devise and encode your own Tetris strategy. Do not use a supplied heuristic or copy v1/v2.
+3. Complete and validate the initial network before running any games. Commit the initial artifact and its provenance first.
+4. Then execute the three fixed 20-game practice rounds, exactly once each.
+5. After each round, analyze the aggregate metrics and three permitted diagnostic replays.
+6. Directly edit the existing network weights based on your own observations and hypotheses. Do not use training, gradients, optimization, search, or reinforcement learning.
+7. Keep a complete record of every strategy hypothesis, observation, weight edit, artifact hash and rebuild.
+8. After the final round, freeze the final artifact and generate the seed-73 showcase replay.
+9. Validate all artifacts and push the completed experiment to wsp/discovery-v3.
+10. Prepare the final replay for publication through the existing GitHub Pages viewer, preserving all existing demos.
+
+All work must happen in Codex Cloud. Do not ask the operator to use a local terminal, transfer files or run simulations.
+
+
+
+Do not inspect other branches or prior experiments. Do not run held-out evaluation or inspect baselines.
+
+
+
+If an engineering or protocol issue blocks progress, stop and report it rather than silently changing the experiment.
+
+
+
+The final deliverable must include the live demo URL, experiment report, final weight artifacts and provenance.
+
+1. Pull the latest commit on `wsp/discovery-v3`.
+2. Re-read the corrected practice harness.
+3. Verify the fix through static checks without running practice games.
+4. Resume the original assignment from initial weight construction.
