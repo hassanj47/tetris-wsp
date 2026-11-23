@@ -1,1 +1,37 @@
-{"schema_version":1,"replays":[{"name":"Fixture A","path":"fixture-a.json"},{"name":"Fixture B","path":"fixture-b.json"},{"name":"Heuristic baseline","path":"heuristic-baseline.json"}],"comparisons":[{"before":"99e264140596de61d3372c96d34003607de2ff5d39041e056bce52577eef05c2","after":"122a49fb3601f5cd414cdbcf20365017bd1ff55e87f20b54e6c886988cc64c9f","percent":0.10481836941924072}]}
+{
+  "schema_version": 1,
+  "replays": [
+    {
+      "name": "Astra v1 — seed 73",
+      "path": "astra-v1-seed-73.json"
+    },
+    {
+      "name": "Astra v2 — seed 73",
+      "path": "astra-v2-seed-73.json"
+    },
+    {
+      "name": "Fixture A",
+      "path": "fixture-a.json"
+    },
+    {
+      "name": "Fixture B",
+      "path": "fixture-b.json"
+    },
+    {
+      "name": "Heuristic baseline",
+      "path": "heuristic-baseline.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "before": "99e264140596de61d3372c96d34003607de2ff5d39041e056bce52577eef05c2",
+      "after": "122a49fb3601f5cd414cdbcf20365017bd1ff55e87f20b54e6c886988cc64c9f",
+      "percent": 0.10481836941924072
+    },
+    {
+      "before": "d32aee66abee6fae581d28ecb79351fdbd6de611d3c97693161ef291e95a0114",
+      "after": "c11aa7cb3373cc8934e60637677e71dafccb060926881bbd66285eba244fd5a8",
+      "percent": 0.08844049919748435
+    }
+  ]
+}
