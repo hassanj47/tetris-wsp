@@ -10,6 +10,10 @@
       "path": "astra-v2-seed-73.json"
     },
     {
+      "name": "Astra v3 — seed 73",
+      "path": "astra-v3-seed-73.json"
+    },
+    {
       "name": "Fixture A",
       "path": "fixture-a.json"
     },
