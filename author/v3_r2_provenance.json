@@ -1,0 +1,41 @@
+{
+  "stage": "r2",
+  "model": "Codex (GPT-6 family); precise deployed model identifier unavailable",
+  "session": "Astra v3 Codex Cloud, environment ccarenv_b64_Y2NhcmVudl9iMDQyYTVkNzZlNGM4MTkxYjM1NWMxNjY3Yzk5OTY5NA",
+  "base": "238e5461d9a752c0cee0336f12f870b84a541c5c",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "method": "Deterministic manual tensor construction/edit; rationale in append-only author/LOG.md",
+  "inputs_and_labels": {
+    "author/edit_v3_r2.py": "d1d55020094016ac66cb560c66b916870ed4627b5d43b688097206aee0c62812",
+    "author/weight_io.py": "387cadd8975117fa242f073891626c3a0d4a24e98ca2344b61f83f18b072f730",
+    "author/prompts.txt": "f614dead24cccbb35b13e86724e1eefe8f847b814277e8db3a5a773943efbae2",
+    "AGENTS.md": "225ddc99614cdb97f67475be2c2718bdebd925aa5b760acf73a66a3d543f8290",
+    "ASSIGNMENT.md": "2e94dcac4139cdcd8d4e538e88dbb8862f22c7c3bf83a47ecf78e8a0e805aeb8",
+    "GAME_SPEC.md": "85633109009186c86bd45244c4c2530e90cd687fe817ce9ebad418be4102638e",
+    "RULES.md": "a6250b4750f4df53606c413e3b7ac0213810ec51c4ff50a84d8586d890f7c60d",
+    "DISCOVERY_PROTOCOL.md": "4ed0f330cb0b6ff7240f13fa0dd3104da2088c0442e645a439585a7571b0ef97",
+    "tools/practice.py": "2d64085aad44cf1a105c80c2cb6c9ef01fb23e1ece10e0660bccc417b5a41e1a",
+    "net/spec.py": "c3526ca6c7772d305f954814d0c0d5c2964ff2b158ef314057259533ed7e0b19",
+    "net/mlp.py": "8b94569129a61a35173c61a76309f223b16560d603659eee811fe44fd186b2b5",
+    "weights/v3_r2_labels.json": "54c24ce187ab3e01f236fcbfc70ceb2766f4c2f38eb81a92f1795b547e92da78",
+    "weights/v3_r1.npz": "8dd72dbfc9be03948582fa76f79c01a31c8898f63125fbe43db3730cea0e70ef",
+    "author/v3_r2_changes.json": "67824249011d9df0aa04d474ec33a1c0358cb5585f331a2ade14ef5af4a75afb",
+    "feedback/round-2/feedback.json": "41c85c9feabfc572424995736b6a15f7bceccbbc705cbf4e0213e7c97adc7ca0",
+    "feedback/round-2/replays/highest-score-seed-9024.json": "f7f454e37e96f5d4a9b98b709fed368880a408372be52236ee5e2bb68f8f7cb6",
+    "feedback/round-2/replays/median-score-seed-9037.json": "85341a97263a3fe3fdd627f6e1b48263f2dc85e068d0974fc587434e5c61e9f6",
+    "feedback/round-2/replays/shortest-survival-seed-9023.json": "04a37393d002b245efc1c6466e7bad61bc01dea254466bf9417c7358a57afe9b"
+  },
+  "output": "weights/v3_r2.npz",
+  "sha256": "9356129a51335e306a29f058b99d40633dd66dd82cc29a19d512b9737396a127",
+  "rebuild_sha256": "9356129a51335e306a29f058b99d40633dd66dd82cc29a19d512b9737396a127",
+  "validation": "Six named float32 finite arrays; 30529 parameters; byte-identical second build via --out",
+  "nonzero": {
+    "W1": 1493,
+    "b1": 100,
+    "W2": 473,
+    "b2": 1,
+    "W3": 21,
+    "b3": 0
+  }
+}
