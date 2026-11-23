@@ -1,0 +1,50 @@
+[
+  {
+    "id": "astra_v1",
+    "name": "Astra v1",
+    "artifact": "evaluation/weights/v1.npz",
+    "sha256": "d32aee66abee6fae581d28ecb79351fdbd6de611d3c97693161ef291e95a0114",
+    "labels": "evaluation/weights/v1_labels.json",
+    "labels_sha256": "eff4307bef7e69bd389427da299c0f17554dac9b6bb94f40177e67f8bb819f54"
+  },
+  {
+    "id": "astra_v2",
+    "name": "Astra v2",
+    "artifact": "evaluation/weights/v2.npz",
+    "sha256": "c11aa7cb3373cc8934e60637677e71dafccb060926881bbd66285eba244fd5a8",
+    "labels": "evaluation/weights/v2_labels.json",
+    "labels_sha256": "dc52a8bec65d2fa50ed774b261f6a4820db751549fcde78532133cfe5bdfdac8"
+  },
+  {
+    "id": "v3_initial",
+    "name": "Astra v3 initial",
+    "artifact": "weights/v3_initial.npz",
+    "sha256": "bfe47746692c6f602da68e580dd4b92bdb62b4ea833a008b8552ae51f6e2feaf",
+    "labels": "weights/v3_initial_labels.json",
+    "labels_sha256": "8669b031c90a4ec24f225a369c7fd3c0ef00dfe5536d9b2d906156537f5dc2b8"
+  },
+  {
+    "id": "v3_r1",
+    "name": "Astra v3 revision 1",
+    "artifact": "weights/v3_r1.npz",
+    "sha256": "8dd72dbfc9be03948582fa76f79c01a31c8898f63125fbe43db3730cea0e70ef",
+    "labels": "weights/v3_r1_labels.json",
+    "labels_sha256": "75b1ceee60282448c602a9f2b821d36c2fca239270f974380d9f227cd8f7e32f"
+  },
+  {
+    "id": "v3_r2",
+    "name": "Astra v3 revision 2",
+    "artifact": "weights/v3_r2.npz",
+    "sha256": "9356129a51335e306a29f058b99d40633dd66dd82cc29a19d512b9737396a127",
+    "labels": "weights/v3_r2_labels.json",
+    "labels_sha256": "54c24ce187ab3e01f236fcbfc70ceb2766f4c2f38eb81a92f1795b547e92da78"
+  },
+  {
+    "id": "v3_final",
+    "name": "Astra v3 final",
+    "artifact": "weights/v3_final.npz",
+    "sha256": "62fa8adae4efeecb1d28e7f12bdbbcc14de18b5d4610da0bb28403d6673ca2fb",
+    "labels": "weights/v3_final_labels.json",
+    "labels_sha256": "31dc20d026ac1216866d9cad0685116dc4cd1caae8807e6c4479a5d0f4777b61"
+  }
+]
