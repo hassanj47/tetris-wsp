@@ -5,7 +5,6 @@ from tetris.moves import placements
 from tetris.pieces import SHAPES
 from tetris.rng import seven_bag
 from tetris.engine import play
-from policies.random_policy import random_policy
 
 
 @pytest.mark.parametrize("count", [1, 2, 3, 4])
@@ -34,7 +33,10 @@ def test_repeatability_and_bags():
     assert pieces == list(islice(seven_bag(42), 70))
     assert all(set(pieces[i:i+7]) == set(SHAPES) for i in range(0, 70, 7))
     def run():
-        return [(p, i, m[i].board.tobytes()) for _, p, m, _, i, _ in play(9, 1000, random_policy(9))]
+        rng = np.random.default_rng(9)
+        def choose(moves):
+            return rng.random(len(moves)), None
+        return [(p, i, m[i].board.tobytes()) for _, p, m, _, i, _ in play(9, 1000, choose)]
     assert run() == run()
     assert len(run()) < 1000
 
