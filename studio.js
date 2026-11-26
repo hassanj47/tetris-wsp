@@ -1,6 +1,7 @@
 import { validateReplay } from "./replay.mjs";
 
 const $ = id => document.getElementById(id);
+if (new URLSearchParams(location.search).get("capture") === "1") document.body.classList.add("capture");
 const PIECE_IDS = " IOTSZJL";
 const PIECE_COLORS = {
   I:"#8eafb0", O:"#c4ae7f", T:"#a99baa", S:"#91a58c",
