@@ -1,14 +1,132 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101510"><title>Placement Lab · Tetris WSP</title><link rel="stylesheet" href="viewer.css"></head>
-<body><header><div class="brand"><span class="mark" aria-hidden="true">▦</span> Tetris <b>WSP</b></div><span class="header-line"></span><span class="subbrand">Weight-space programming</span><span class="local">● &nbsp; Replay studio</span></header>
-<main><div class="intro"><div><h1>Placement Lab<span>.</span></h1><p>One piece. Every legal placement scored.</p></div><div class="selectors"><button id="import" type="button">Import replay</button><input type="file" id="file" accept=".json,application/json" hidden><label>Recording<select id="recording"></select></label><label>Compare with<select id="compare"><option value="">Off</option></select></label></div></div>
-<p id="status" role="status">Loading recording…</p>
-<div class="panels"><section class="panel"><div class="panel-head"><h2>Playfield</h2><span class="tag" id="seed"></span></div><div id="games"></div></section>
-<section class="panel neural"><div class="panel-head"><h2>Decision network</h2><span class="tag" id="kind"></span></div>
-<div class="tabs" role="group" aria-label="Inspect decision"><button data-mode="network" aria-pressed="true">Network</button><button data-mode="features" aria-pressed="false">Features</button><button data-mode="weights" aria-pressed="false">Weights</button></div>
-<div class="net-head"><div><small>SELECTED PLACEMENT</small><strong id="placement"></strong></div><div class="right"><small>OUTPUT SCORE</small><strong id="score"></strong></div></div>
-<div id="network"><canvas id="graph" width="760" height="340" aria-label="Recorded input groups, hidden neurons and weighted edges"></canvas><div class="legend"><span><i></i> Positive contribution</span><span><i></i> Negative</span></div></div>
-<div id="detail" hidden></div><div class="readout" id="readout"></div></section></div>
-<section class="transport" aria-label="Replay controls"><button id="play" aria-label="Play">▶</button><button id="prev" aria-label="Previous placement">‹</button><button id="next" aria-label="Next placement">›</button><label class="timeline">Placement <output id="counter"></output><input type="range" id="seek" min="0" value="0" aria-label="Placement"></label><select id="speed" aria-label="Playback speed"><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></section>
-<footer><span>205 → 128 → 32 → 1</span><span>30,529 parameters</span></footer></main><script type="module" src="viewer.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d12">
+  <meta name="description" content="Watch two neural networks play Tetris and inspect the decisions made by their weight-space programmed controllers.">
+  <title>Weight Space in Action · Tetris WSP</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Tetris WSP home">
+      <span class="brand-mark">▦</span><span>TETRIS <b>WSP</b></span>
+    </a>
+    <div class="topbar-divider"></div>
+    <span class="topbar-caption">WEIGHT-SPACE PROGRAMMING EXPERIMENT</span>
+    <div class="topbar-right"><span class="live-dot"></span> RECORDED INFERENCE</div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> AN INTERACTIVE NEURAL NETWORK DEMONSTRATION</div>
+        <h1>Weight Space <em>in Action</em></h1>
+        <p class="hero-subtitle">Two neural networks. One challenge. Different decisions.</p>
+      </div>
+      <div class="shared-context">
+        <div class="context-icon">↗</div>
+        <div><span>SHARED GAME CONDITIONS</span><strong>SEED 73 <i>·</i> SAME PIECE STREAM</strong><small>20 × 10 board · seven-bag randomizer</small></div>
+      </div>
+    </section>
+
+    <section class="selectorbar" aria-label="Choose neural network recordings">
+      <div class="selector-group selector-a">
+        <span class="selector-dot"></span>
+        <label for="runA">RUN A <select id="runA"></select></label>
+      </div>
+      <div class="versus">VS</div>
+      <div class="selector-group selector-b">
+        <span class="selector-dot"></span>
+        <label for="runB">RUN B <select id="runB"></select></label>
+      </div>
+      <div class="selector-note" id="syncStatus">Loading matched recordings…</div>
+    </section>
+
+    <section class="arena-grid" aria-label="Two Tetris games and their neural networks">
+      <article class="arena arena-a">
+        <div class="arena-heading">
+          <div><span class="run-kicker">A / CONTROLLER</span><h2 id="titleA">Astra v1</h2></div>
+          <span class="run-status" id="stateA">READY</span>
+        </div>
+        <div class="game-row">
+          <div class="board-shell">
+            <div class="board-topline"><span>PLAYFIELD</span><span id="pieceA">PIECE —</span></div>
+            <canvas id="boardA" class="board" width="300" height="600" aria-label="Tetris gameplay for controller A"></canvas>
+          </div>
+          <div class="metrics">
+            <div class="metric metric-score"><span>SCORE</span><strong id="scoreA">0</strong></div>
+            <div class="metric"><span>LINES</span><strong id="linesA">0</strong></div>
+            <div class="metric"><span>PIECES</span><strong id="piecesA">0</strong></div>
+            <div class="metric"><span>TETRISES</span><strong id="tetrisesA">0</strong></div>
+            <div class="metric metric-well"><span>RIGHT WELL EMPTY</span><strong id="wellA">0%</strong></div>
+          </div>
+        </div>
+        <section class="network-panel">
+          <div class="network-heading"><div><span class="section-kicker">THE DECISION ENGINE</span><h3>Neural network <small>A</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
+          <canvas id="netA" class="network-canvas" width="900" height="260" aria-label="Recorded activations and weighted contributions for neural network A"></canvas>
+          <div class="network-legend"><span><i class="positive"></i> Positive contribution</span><span><i class="negative"></i> Negative contribution</span><span>Brightness = contribution strength</span></div>
+        </section>
+      </article>
+
+      <article class="arena arena-b">
+        <div class="arena-heading">
+          <div><span class="run-kicker">B / CONTROLLER</span><h2 id="titleB">Astra v3</h2></div>
+          <span class="run-status" id="stateB">READY</span>
+        </div>
+        <div class="game-row">
+          <div class="board-shell">
+            <div class="board-topline"><span>PLAYFIELD</span><span id="pieceB">PIECE —</span></div>
+            <canvas id="boardB" class="board" width="300" height="600" aria-label="Tetris gameplay for controller B"></canvas>
+          </div>
+          <div class="metrics">
+            <div class="metric metric-score"><span>SCORE</span><strong id="scoreB">0</strong></div>
+            <div class="metric"><span>LINES</span><strong id="linesB">0</strong></div>
+            <div class="metric"><span>PIECES</span><strong id="piecesB">0</strong></div>
+            <div class="metric"><span>TETRISES</span><strong id="tetrisesB">0</strong></div>
+            <div class="metric metric-well"><span>RIGHT WELL EMPTY</span><strong id="wellB">0%</strong></div>
+          </div>
+        </div>
+        <section class="network-panel">
+          <div class="network-heading"><div><span class="section-kicker">THE DECISION ENGINE</span><h3>Neural network <small>B</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
+          <canvas id="netB" class="network-canvas" width="900" height="260" aria-label="Recorded activations and weighted contributions for neural network B"></canvas>
+          <div class="network-legend"><span><i class="positive"></i> Positive contribution</span><span><i class="negative"></i> Negative contribution</span><span>Brightness = contribution strength</span></div>
+        </section>
+      </article>
+    </section>
+
+    <section class="decision-panel">
+      <div class="decision-title">
+        <div><span class="section-kicker">ZOOM IN ON ONE DECISION</span><h2>Decision comparison</h2></div>
+        <span class="decision-piece" id="decisionPiece">CURRENT PIECE · —</span>
+      </div>
+      <div class="decision-grid">
+        <div class="decision-run decision-run-a"><div class="decision-run-head"><span class="decision-dot"></span><strong id="decisionNameA">Astra v1</strong><span class="decision-picked" id="pickedA">SELECTED</span></div><div id="candidatesA" class="candidate-list"></div></div>
+        <div class="decision-middle"><div class="decision-diff" id="decisionDiff">—</div><span>SELECTED MOVE</span></div>
+        <div class="decision-run decision-run-b"><div class="decision-run-head"><span class="decision-dot"></span><strong id="decisionNameB">Astra v3</strong><span class="decision-picked" id="pickedB">SELECTED</span></div><div id="candidatesB" class="candidate-list"></div></div>
+      </div>
+      <p class="decision-caveat">Same seed and piece sequence; each controller plays its own evolving board. Once their moves diverge, candidate scores are calculated on different board states — this is a visual comparison of their recorded decisions, not a same-board head-to-head test.</p>
+    </section>
+
+    <section class="transport" aria-label="Synchronized replay controls">
+      <div class="transport-buttons">
+        <button id="restart" class="transport-icon" title="Restart replay" aria-label="Restart">↺</button>
+        <button id="prev" class="transport-icon" title="Previous placement" aria-label="Previous placement">‹</button>
+        <button id="play" class="play-button" title="Play or pause" aria-label="Play">▶</button>
+        <button id="next" class="transport-icon" title="Next placement" aria-label="Next placement">›</button>
+      </div>
+      <div class="transport-progress">
+        <div class="progress-label"><span>SYNCED PLAYBACK</span><strong id="stepLabel">Placement 1 / —</strong></div>
+        <input type="range" id="seek" min="0" max="0" value="0" aria-label="Replay placement">
+      </div>
+      <label class="speed-control">SPEED <select id="speed"><option value="0.5">0.5×</option><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option><option value="8">8×</option></select></label>
+    </section>
+
+    <section class="explain-line"><span class="explain-mark">i</span><p><strong>How to read the networks:</strong> node brightness reflects recorded activation; coloured connections show the strongest recorded weighted contributions for the selected move. The network has 30,529 parameters in total.</p></section>
+  </main>
+
+  <footer><span>TETRIS WSP <i>·</i> WEIGHT-SPACE PROGRAMMING</span><span>RECORDED GAMEPLAY + RECORDED NEURAL INFERENCE</span></footer>
+  <script type="module" src="studio.js"></script>
+</body>
+</html>
