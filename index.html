@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d12">
+  <meta name="theme-color" content="#181a17">
   <meta name="description" content="Watch two neural networks play Tetris and inspect the decisions made by their weight-space programmed controllers.">
   <title>Weight Space in Action · Tetris WSP</title>
   <link rel="stylesheet" href="studio.css">
@@ -14,20 +14,19 @@
       <span class="brand-mark">▦</span><span>TETRIS <b>WSP</b></span>
     </a>
     <div class="topbar-divider"></div>
-    <span class="topbar-caption">WEIGHT-SPACE PROGRAMMING EXPERIMENT</span>
-    <div class="topbar-right"><span class="live-dot"></span> RECORDED INFERENCE</div>
+    <span class="topbar-caption">A TETRIS WEIGHT-SPACE EXPERIMENT</span>
+    <div class="topbar-right">Recorded inference</div>
   </header>
 
   <main class="page">
     <section class="hero">
       <div>
-        <div class="eyebrow"><span class="eyebrow-line"></span> AN INTERACTIVE NEURAL NETWORK DEMONSTRATION</div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> A STUDY IN WEIGHT-SPACE PROGRAMMING</div>
         <h1>Weight Space <em>in Action</em></h1>
         <p class="hero-subtitle">Two neural networks. One challenge. Different decisions.</p>
       </div>
       <div class="shared-context">
-        <div class="context-icon">↗</div>
-        <div><span>SHARED GAME CONDITIONS</span><strong>SEED 73 <i>·</i> SAME PIECE STREAM</strong><small>20 × 10 board · seven-bag randomizer</small></div>
+        <div><span>Same game conditions</span><strong>Seed 73 <i>·</i> Same piece stream</strong><small>20 × 10 board · seven-bag randomizer</small></div>
       </div>
     </section>
 
@@ -64,8 +63,8 @@
           </div>
         </div>
         <section class="network-panel">
-          <div class="network-heading"><div><span class="section-kicker">THE DECISION ENGINE</span><h3>Neural network <small>A</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
-          <canvas id="netA" class="network-canvas" width="900" height="260" aria-label="Recorded activations and weighted contributions for neural network A"></canvas>
+          <div class="network-heading"><div><span class="section-kicker">WEIGHTED INFERENCE</span><h3>Network <small>A</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
+          <canvas id="netA" class="network-canvas" width="900" height="190" aria-label="Recorded activations and weighted contributions for neural network A"></canvas>
           <div class="network-legend"><span><i class="positive"></i> Positive contribution</span><span><i class="negative"></i> Negative contribution</span><span>Brightness = contribution strength</span></div>
         </section>
       </article>
@@ -89,7 +88,7 @@
           </div>
         </div>
         <section class="network-panel">
-          <div class="network-heading"><div><span class="section-kicker">THE DECISION ENGINE</span><h3>Neural network <small>B</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
+          <div class="network-heading"><div><span class="section-kicker">THE DECISION ENGINE</span><h3>Network <small>B</small></h3></div><span class="architecture">205 → 128 → 32 → 1</span></div>
           <canvas id="netB" class="network-canvas" width="900" height="260" aria-label="Recorded activations and weighted contributions for neural network B"></canvas>
           <div class="network-legend"><span><i class="positive"></i> Positive contribution</span><span><i class="negative"></i> Negative contribution</span><span>Brightness = contribution strength</span></div>
         </section>
@@ -98,8 +97,8 @@
 
     <section class="decision-panel">
       <div class="decision-title">
-        <div><span class="section-kicker">ZOOM IN ON ONE DECISION</span><h2>Decision comparison</h2></div>
-        <span class="decision-piece" id="decisionPiece">CURRENT PIECE · —</span>
+        <div><span class="section-kicker">ONE MOVE · TWO POLICIES</span><h2>A decision, side by side</h2></div>
+        <span class="decision-piece" id="decisionPiece">Piece · —</span>
       </div>
       <div class="decision-grid">
         <div class="decision-run decision-run-a"><div class="decision-run-head"><span class="decision-dot"></span><strong id="decisionNameA">Astra v1</strong><span class="decision-picked" id="pickedA">SELECTED</span></div><div id="candidatesA" class="candidate-list"></div></div>

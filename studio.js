@@ -3,8 +3,8 @@ import { validateReplay } from "./replay.mjs";
 const $ = id => document.getElementById(id);
 const PIECE_IDS = " IOTSZJL";
 const PIECE_COLORS = {
-  I:"#65d7df", O:"#f1cb73", T:"#b7a0ff", S:"#8bd5a1",
-  Z:"#ef91a8", J:"#8eafff", L:"#f1a878"
+  I:"#8eafb0", O:"#c4ae7f", T:"#a99baa", S:"#91a58c",
+  Z:"#b98580", J:"#8999a9", L:"#c09278"
 };
 const state = { a:null, b:null, index:0, phase:0, playing:false, speed:2 };
 const cache = new Map();
@@ -97,8 +97,8 @@ function drawBoard(canvas,r,index,phase) {
   const f=r.frames[Math.min(index,r.frames.length-1)];
   const settled=finished || phase>=.92;
   const board=settled ? f.after : f.before;
-  ctx.fillStyle="#09121a";ctx.fillRect(0,0,300,600);
-  ctx.strokeStyle="#1c2a35";ctx.lineWidth=.8;
+  ctx.fillStyle="#252921";ctx.fillRect(0,0,300,600);
+  ctx.strokeStyle="#363b32";ctx.lineWidth=.8;
   for(let y=0;y<=20;y++){ctx.beginPath();ctx.moveTo(0,y*30);ctx.lineTo(300,y*30);ctx.stroke();}
   for(let x=0;x<=10;x++){ctx.beginPath();ctx.moveTo(x*30,0);ctx.lineTo(x*30,600);ctx.stroke();}
   board.forEach((row,y)=>row.forEach((v,x)=>{if(v)cell(ctx,x,y,PIECE_COLORS[PIECE_IDS[v]]);}));
@@ -120,10 +120,10 @@ function drawBoard(canvas,r,index,phase) {
     }
   }
   if (finished) {
-    ctx.fillStyle="#071018b8";ctx.fillRect(0,0,300,600);
-    ctx.fillStyle="#f2f5f4";ctx.textAlign="center";ctx.font="700 18px system-ui";
+    ctx.fillStyle="#191d17e8";ctx.fillRect(0,0,300,600);
+    ctx.fillStyle="#e9e7dc";ctx.textAlign="center";ctx.font="700 18px system-ui";
     ctx.fillText("GAME COMPLETE",150,286);
-    ctx.fillStyle="#9aabb6";ctx.font="11px ui-monospace,monospace";
+    ctx.fillStyle="#b1b2a5";ctx.font="11px ui-monospace,monospace";
     ctx.fillText(f.stats.pieces+" PLACEMENTS",150,310);
   }
 }
@@ -143,9 +143,9 @@ function inputGroup(index) {
   return index<200 ? Math.floor(index/10) : 20+(index-200);
 }
 function nodePosition(layer,index) {
-  if (layer===0) return [48,25+inputGroup(index)*8.55];
-  if (layer===1) return [285+(index%8)*10.5,20+Math.floor(index/8)*13.8];
-  if (layer===2) return [580+(index%4)*12,48+Math.floor(index/4)*20];
+  if (layer===0) return [48,18+inputGroup(index)*6.1];
+  if (layer===1) return [285+(index%8)*10.5,16+Math.floor(index/8)*9.8];
+  if (layer===2) return [580+(index%4)*12,34+Math.floor(index/4)*14];
   return [846,132];
 }
 function groupedInputs(input) {
@@ -158,17 +158,17 @@ function groupedInputs(input) {
   return groups;
 }
 function drawNetwork(canvas,r,index,phase) {
-  const ctx=canvas.getContext("2d"), width=900,height=260;
+  const ctx=canvas.getContext("2d"), width=900,height=190;
   ctx.clearRect(0,0,width,height);
   const f=r.frames[Math.min(index,r.frames.length-1)];
   const trace=f.trace;
   if (!trace) {
     ctx.fillStyle="#82919b";ctx.font="12px ui-monospace,monospace";ctx.fillText("No neural inference trace in this recording.",40,120);return;
   }
-  ctx.font="10px ui-monospace,monospace";ctx.fillStyle="#82919b";ctx.textAlign="center";
+  ctx.font="10px Arial,sans-serif";ctx.fillStyle="#9b9d90";ctx.textAlign="center";
   [["INPUT",48],["HIDDEN 1",322],["HIDDEN 2",598],["OUTPUT",846]].forEach(([label,x])=>ctx.fillText(label,x,12));
-  ctx.fillStyle="#53636f";ctx.font="8px ui-monospace,monospace";
-  ctx.fillText("205 FEATURES",48,252);ctx.fillText("128 NEURONS",322,252);ctx.fillText("32 NEURONS",598,252);ctx.fillText("MOVE SCORE",846,252);
+  ctx.fillStyle="#858a7e";ctx.font="8px Arial,sans-serif";
+  ctx.fillText("205 INPUTS",48,184);ctx.fillText("128 UNITS",322,184);ctx.fillText("32 UNITS",598,184);ctx.fillText("MOVE SCORE",846,184);
   const input=groupedInputs(trace.layers[0]);
   const layers=[input,trace.layers[1],trace.layers[2],[f.candidates[f.selected][3]]];
   for(let layer=0;layer<3;layer++) {
@@ -179,11 +179,11 @@ function drawNetwork(canvas,r,index,phase) {
       const p1=nodePosition(layer,src),p2=nodePosition(layer+1,dst);
       const strength=Math.abs(contribution)/max;
       ctx.beginPath();ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);
-      ctx.strokeStyle=contribution>=0?"#71e4cb":"#f18db5";
+      ctx.strokeStyle=contribution>=0?"#a4b197":"#c18f79";
       ctx.globalAlpha=.10+.58*strength;ctx.lineWidth=.55+1.45*strength;ctx.stroke();
       const pulse=(phase*1.6+layer*.23)%1;
       ctx.beginPath();ctx.arc(p1[0]+(p2[0]-p1[0])*pulse,p1[1]+(p2[1]-p1[1])*pulse,1.8+strength,0,Math.PI*2);
-      ctx.fillStyle=contribution>=0?"#a8ffe4":"#ffc0d6";ctx.globalAlpha=.18+.72*strength;ctx.fill();
+      ctx.fillStyle=contribution>=0?"#cbd4bd":"#d4aa98";ctx.globalAlpha=.18+.72*strength;ctx.fill();
     }
   }
   ctx.globalAlpha=1;
@@ -193,9 +193,9 @@ function drawNetwork(canvas,r,index,phase) {
       const p=nodePosition(layer,i),strength=Math.sqrt(Math.abs(value)/max);
       const radius=layer===3?8:layer===2?3.5:2.7;
       ctx.beginPath();ctx.arc(p[0],p[1],radius+strength*(layer===3?2:1),0,Math.PI*2);
-      ctx.fillStyle="#25343b";ctx.fill();
+      ctx.fillStyle="#3b4036";ctx.fill();
       ctx.beginPath();ctx.arc(p[0],p[1],Math.max(1.1,radius*strength),0,Math.PI*2);
-      ctx.fillStyle=layer===3?"#d7ff9c":(layer===1?"#8ff0d1":"#a99cff");
+      ctx.fillStyle=layer===3?"#d0c29c":(layer===1?"#b7c3a9":"#a9ad9c");
       ctx.globalAlpha=.22+.78*strength;ctx.fill();ctx.globalAlpha=1;
     });
   });
@@ -225,7 +225,7 @@ function renderDecision() {
   const ca=a.candidates[a.selected],cb=b.candidates[b.selected];
   const same=ca[0]===cb[0] && ca[1]===cb[1];
   $("decisionDiff").textContent=same ? "SAME PLACEMENT" : "DIFFERENT MOVES";
-  $("decisionDiff").style.color=same?"var(--mint)":"var(--amber)";
+  $("decisionDiff").style.color=same?"var(--sage)":"var(--ochre)";
 }
 function render() {
   if(!state.a || !state.b)return;
